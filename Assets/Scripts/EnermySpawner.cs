@@ -13,7 +13,7 @@ public class EnermySpawner : MonoBehaviour
         enermys = new GameObject[count];
         for(int i = 0;i<count;i++)
         {
-            Vector3 pos = new Vector3(Random.Range(-30, 30), 1f, Random.Range(-30, 30));
+            Vector3 pos = new Vector3(Random.Range(-30, 30), 3f, Random.Range(-30, 30));
             enermys[i] = Instantiate(enermyPrefab, pos, Quaternion.identity);
         }
     }
