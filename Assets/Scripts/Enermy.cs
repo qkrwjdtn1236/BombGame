@@ -6,12 +6,15 @@ public class Enermy : MonoBehaviour
 {
     public Transform target;
     private Rigidbody rig;
-    public float speed = 20f;
+    public float speed = 100f;
+    public AudioSource enermyAudio;
+    public GameObject explosionEffect;
 
     private bool scored = false;
     // Start is called before the first frame update
     void Start()
     {
+        enermyAudio = GetComponent<AudioSource>();
         rig = GetComponent<Rigidbody>();
         target = GameObject.FindWithTag("Player").transform;
     }
@@ -30,6 +33,8 @@ public class Enermy : MonoBehaviour
     {
         if (other.tag == "Bullet" && scored == false)
         {
+            enermyAudio.Play();
+            Instantiate(explosionEffect, transform.position, transform.rotation);
             scored = true;
             GameManager.instance.AddScore(1);
             transform.position = new Vector3(Random.Range(-30, 30), 5.5f, Random.Range(-30, 30));

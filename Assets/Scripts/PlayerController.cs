@@ -18,6 +18,10 @@ public class PlayerController : MonoBehaviour
     }
     void Update()
     {
+        if (GameManager.instance.isGameover)
+        {
+            return;
+        }
         translation = Input.GetAxis("Vertical") * PlayerSpeed;
 
         rotation = Input.GetAxis("Horizontal") * PlayerRotateSpeed;
@@ -28,10 +32,15 @@ public class PlayerController : MonoBehaviour
             ani.SetBool("walk", true);
         else
             ani.SetBool("walk", false);
+        
     }
 
     private void OnCollisionEnter(Collision collision)
     {
+        if(GameManager.instance.isGameover)
+        {
+            return;
+        }
         if(collision.collider.tag == "Obstacle")
         {
             ani.SetTrigger("damage");
