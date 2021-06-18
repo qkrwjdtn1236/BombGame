@@ -25,7 +25,7 @@ public class Enermy : MonoBehaviour
         if (Vector3.Distance(target.position, transform.position) < 10f)
         {
             Vector3 trans = target.position - transform.position;
-            rig.AddForce(trans * Time.deltaTime);
+            rig.AddForce(trans* speed * Time.deltaTime);
         }
     }
 
